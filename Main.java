@@ -27,11 +27,11 @@ public class Main {
 			String nombre;
 			List<BigInteger> liste = new ArrayList<BigInteger>();
 			//while ((line = in.readLine()) != null)
-			for(int i = 0;i<50;i++)
+			for(int i = 1;i<1000;i++)
 			{
 				line=in.readLine();
 				nombre = "";
-				for(int k =16;k<line.length();k++)
+				for(int k =17;k<line.length();k++)
 				{
 					nombre = nombre + line.charAt(k);
 				}
@@ -49,7 +49,7 @@ public class Main {
 
 		long tStart = System.currentTimeMillis();
 
-		List<BigInteger> liste = textToList("keys/keys100.txt");
+		List<BigInteger> liste = textToList("keys/keys1000.txt");
 		for(int i=0; i+1<liste.size(); i++)
 		{
 			BigInteger a = liste.get(i);
