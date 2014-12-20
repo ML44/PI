@@ -26,8 +26,10 @@ public class Main {
 			String line;
 			String nombre;
 			List<BigInteger> liste = new ArrayList<BigInteger>();
-			while ((line = in.readLine()) != null)
+			//while ((line = in.readLine()) != null)
+			for(int i = 0;i<50;i++)
 			{
+				line=in.readLine();
 				nombre = "";
 				for(int k =16;k<line.length();k++)
 				{
@@ -44,6 +46,8 @@ public class Main {
 	
 		
 	public static void main(String[] args)  throws IOException {
+
+		long tStart = System.currentTimeMillis();
 
 		List<BigInteger> liste = textToList("keys/keys100.txt");
 		for(int i=0; i+1<liste.size(); i++)
@@ -64,6 +68,9 @@ public class Main {
 				
 			}
 		}
+		long tEnd = System.currentTimeMillis();
+		long tDelta = tEnd - tStart;
+		System.out.print(tDelta);
 		
 			
 	}
