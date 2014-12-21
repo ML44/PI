@@ -6,6 +6,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.List;
 import java.math.BigInteger;
+
+//import sun.security.util.BigInt;
 	
 public class Main {
 	  
@@ -43,10 +45,52 @@ public class Main {
 			return liste;
 	  }
 
+	public Arbre construitArbreVide(int n) {
+		if(n==0)
+		{
+			return null;
+		}
+		if(n==1)
+		{
+			return new Arbre();
+		}
+		else
+		{
+			int b = n/2;
+			int a = n - b;
+			return new Arbre(construitArbreVide(a),construitArbreVide(b));
+		}		
+	}
+	
+	public static Arbre construitArbreProduit(List<BigInteger> liste, int a, int b)
+	{
+		Arbre mon_arbre;
+		if(a==b)
+		{
+			mon_arbre = new Arbre();
+			mon_arbre.produit = liste.get(a);
+		}
+		else
+		{
+			int m = (b+a)/2; //?
+			Arbre mon_arbre_gauche = construitArbreProduit(liste, a, m);
+			Arbre mon_arbre_droit = construitArbreProduit(liste, m+1, b);
+			mon_arbre = new Arbre(mon_arbre_gauche, mon_arbre_droit);
+			mon_arbre.remplaceProduitFils();
+		}
+
+		return mon_arbre;
+	}
+	
+	public static Arbre construitArbreProduit(List<BigInteger> liste)
+	{
+		int n = liste.size();
+		return construitArbreProduit(liste, 0, n-1);//start ˆ 0 ou 1 ?
+	}
 	
 		
 	public static void main(String[] args)  throws IOException {
-
+/*
 		long tStart = System.currentTimeMillis();
 
 		List<BigInteger> liste = textToList("keys/keys1000.txt");
@@ -71,8 +115,29 @@ public class Main {
 		long tEnd = System.currentTimeMillis();
 		long tDelta = tEnd - tStart;
 		System.out.print(tDelta);
+	*/	
 		
-			
+	/*	
+		Arbre mon_arbre1 = new Arbre();
+		mon_arbre1.produit = new BigInteger("3");
+		Arbre mon_arbre2 = new Arbre();
+		mon_arbre2.produit = new BigInteger("2");
+		Arbre mon_arbre = new Arbre(mon_arbre1,mon_arbre2);
+		mon_arbre.remplaceProduitFils();
+	*/
+		List<BigInteger> ma_liste = new ArrayList<BigInteger>();
+		ma_liste.add(new BigInteger("3"));
+		ma_liste.add(new BigInteger("2"));
+		ma_liste.add(new BigInteger("2"));
+		ma_liste.add(new BigInteger("2"));
+
+
+		Arbre mon_arbre = construitArbreProduit(ma_liste);
+		mon_arbre.print();
+		
 	}
+	
+		
+	
 
 }
