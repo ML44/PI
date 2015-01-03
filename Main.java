@@ -61,8 +61,7 @@ public class Main {
 		//long tStart = System.currentTimeMillis();
 
 		List<BigInteger> liste = textToList("keys/keys100.txt");
-		Arbre mon_arbre = Arbre.construitArbreProduit(liste);
-		mon_arbre.print();
+		System.out.print(liste.toString());
 		
 		
 		/*
